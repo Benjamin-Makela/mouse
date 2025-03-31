@@ -3,11 +3,11 @@ const port = 80;
 
 const server = http.createServer((req, res) => {
     if (req.url === "/") {
-        res.writeHead({ "Content-Type": "text/html" });
-        res.end(200, "<p>So this works I guess.</p>");
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end("<p>So this works I guess.</p>");
     } else {
-        res.writeHead({ "Content-Type": "text/html" });
-        res.end(404, "Not working yo. There is no page with this address.");
+        res.writeHead(404, { "Content-Type": "text/html" });
+        res.end("Not working yo. There is no page with this address.");
     }
 });
 
