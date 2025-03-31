@@ -1,7 +1,10 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const ws = require("ws");
 const port = 80;
+
+const wss = new ws.Server({ port: 80 });
 
 const server = http.createServer((req, res) => {
     if (req.url === "/") {
