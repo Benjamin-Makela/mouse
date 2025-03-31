@@ -6,6 +6,7 @@ const port = 80;
 const server = http.createServer((req, res) => {
     if (req.url === "/") {
         const dir = path.join(__dirname, "mouse.html");
+        console.log(dir);
         fs.readFile(dir, (data, err) => {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end();
