@@ -6,10 +6,14 @@ const port = 80;
 const server = http.createServer((req, res) => {
     if (req.url === "/") {
         const dir = path.join(__dirname, "mouse.html");
-        console.log(dir);
-        fs.readFile(dir, (data, err) => {
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end();
+        fs.readFile(dir, (err, data) => {
+            if (err) {
+                res.writeHead(404, { "Content-Type": "text/html" });
+                res.end("<h1>404 Error. Benny does not store files here.</h1>");
+            } else {
+                res.writeHead(200, { "Content-Type": "text/html" });
+                res.end(data);
+            }
         });
     } else {
         res.writeHead(404, { "Content-Type": "text/html" });
