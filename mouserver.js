@@ -4,7 +4,7 @@ const path = require("path");
 const WebSocket = require("ws");
 const port = 80;
 
-const wss = new WebSocket.Server({ port: 80 });
+const wss = new WebSocket.Server({ port: 8080 });
 const mouses = [];
 setInterval(() => {
     if (mouses.length != 0) {
