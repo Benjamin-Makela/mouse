@@ -27,15 +27,26 @@ wss.on("close", (client) => {
     console.log("websocket disconnect");
 });
 
+const acceptable = ["/", "/mouse.html", "/mouse.js"];
 const server = http.createServer((req, res) => {
-    if (req.url === "/") {
-        const dir = path.join(__dirname, "mouse.html");
-        fs.readFile(dir, (err, data) => {
+    if (acceptable.includes(req.url)) {
+        let fd = req.url.substring(1);
+        if (req.url === "") {
+            fd = "mouse.html";
+        }
+        let ct = fd.split(".");
+        ct = fd[fd.length-1];
+        if (ct === "html" || ct === "htm") {
+            ct = "text/html";
+        } else if (ct === "js") {
+            ct = "text/javascript";
+        }
+        fs.readFile(path.join(__dirname, fd), (err, data) => {
             if (err) {
                 res.writeHead(404, { "Content-Type": "text/html" });
-                res.end("<h1>404 Error. Benny does not store files here.</h1>");
+                res.end("<h1>404 Benny encountered an issue reading this one. Sorry for his illiteracy.</h1>");
             } else {
-                res.writeHead(200, { "Content-Type": "text/html" });
+                res.writeHead(200, { "Content-Type": ct });
                 res.end(data);
             }
         });
