@@ -1,5 +1,5 @@
 async function init() {
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket("ws://bennybanana.live:8080");
     ws.addEventListener("message", (message) => { 
     });
     document.addEventListener("mousemove", (event) => {
