@@ -31,7 +31,7 @@ const acceptable = ["/", "/mouse.html", "/mouse.js"];
 const server = http.createServer((req, res) => {
     if (acceptable.includes(req.url)) {
         let fd = req.url.substring(1);
-        if (req.url === "") {
+        if (fd === "") {
             fd = "mouse.html";
         }
         let ct = fd.split(".");
