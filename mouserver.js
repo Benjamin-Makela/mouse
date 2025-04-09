@@ -5,26 +5,13 @@ const WebSocket = require("ws");
 const port = 80;
 
 const wss = new WebSocket.Server({ port: 8080 });
-const mouses = [];
-setInterval(() => {
-    if (mouses.length != 0) {
-        console.log("List of mice:");
-        mouses.forEach((mouse) => {
-            console.log(mouse);
-        });
-        console.log();
-    }
-}, 1000);
 
 wss.on("connection", (client) => {
-    console.log("websocket connection");
     client.on("message", (event) => {
-        console.log(event.data);
     });
 });
 
 wss.on("close", (client) => {
-    console.log("websocket disconnect");
 });
 
 const acceptable = ["/", "/mouse.html", "/mouse.js"];
