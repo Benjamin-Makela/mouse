@@ -7,11 +7,14 @@ const port = 80;
 const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on("connection", (client) => {
+    console.log("connection opened");
     client.on("message", (event) => {
+        console.log("message: " + event.data);
     });
 });
 
 wss.on("close", (client) => {
+    console.log("connection closed");
 });
 
 const acceptable = ["/", "/mouse.html", "/mouse.js"];
