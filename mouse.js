@@ -1,8 +1,9 @@
 async function init() {
-    console.log("hello?");
     const ws = new WebSocket("ws://bennybanana.live:8080");
     ws.addEventListener("open", (event) => {
         console.log("BENNYSOCKET CONNECTION");
+        document.addEventListener("mousemove", (event) => {
+        });
     });
     ws.addEventListener("message", (event) => { 
     });
@@ -12,6 +13,4 @@ async function init() {
         console.error("BENNYSOCKET ERROR: ", event);
     }
     );
-    document.addEventListener("mousemove", (event) => {
-    });
 }
